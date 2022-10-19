@@ -1,0 +1,29 @@
+{
+  "properties": [
+    {
+      "name": "mail.sender.address",
+      "type": "java.lang.String",
+      "description": "Sender email address that appears in the notification mails' header."
+    },
+    {
+      "name": "mail.sender.name",
+      "type": "java.lang.String",
+      "description": "Sender name that appears in the notification mails' header."
+    },
+    {
+      "name": "mail.admin-notification-address",
+      "type": "java.lang.String",
+      "description": "Email address used as recipient for administrator notifications."
+    },
+    {
+      "name": "mail.date-pattern",
+      "type": "java.lang.String",
+      "description": "Format pattern for dates appearing in mails, defaults to 'yyyy-MM-dd HH:mm:ss z'."
+    },
+    {
+      "name": "mail.registrations",
+      "type": "java.util.Map<hu.psprog.leaflet.lens.core.domain.MailType,hu.psprog.leaflet.lens.core.config.MailRegistration>",
+      "description": "Mail registrations."
+    }
+  ]
+}
