@@ -5,6 +5,7 @@ import hu.psprog.leaflet.lens.core.domain.Mail;
 import hu.psprog.leaflet.lens.core.domain.MailDeliveryInfo;
 import hu.psprog.leaflet.lens.core.domain.MailRequest;
 import hu.psprog.leaflet.lens.core.exception.MailException;
+import hu.psprog.leaflet.lens.core.exception.MailValidationException;
 import hu.psprog.leaflet.lens.core.factory.MailFactory;
 import hu.psprog.leaflet.lens.core.observer.ObserverHandler;
 import hu.psprog.leaflet.lens.core.service.MailService;
@@ -46,8 +47,11 @@ public class MailServiceImpl implements MailService {
             Observable<MailDeliveryInfo> mailDeliveryInfoObservable = mailClient.sendMail(mail);
             mailDeliveryInfoObserverHandler.attachObserver(mailDeliveryInfoObservable);
 
-        } catch (Exception exception) {
+        } catch (MailValidationException exception) {
+            log.error("Mail validation failed", exception);
+            throw exception;
 
+        } catch (Exception exception) {
             log.error("Failed to send mail", exception);
             throw new MailException(String.format("Failed to send mail of type [%s]", mailRequest.getMailType()));
         }

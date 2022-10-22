@@ -16,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.MessageSource;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -44,7 +45,7 @@ class MailFactoryImplTest {
     private static final String SUBJECT_KEY_OVERRIDE = "subject-key-override";
     private static final String DEFAULT_SUBJECT_KEY = "default-subject-key";
     private static final String SUBJECT_TRANSLATED = "subject_translated";
-    private static final String FORMATTED_DATE = "2022-10-19";
+    private static final String FORMATTED_DATE = LocalDate.now().toString();
     private static final String TEMPLATE = "contact-request-template";
     private static final Locale FORCED_LOCALE = Locale.UK;
     private static final SimpleDateFormat MAIL_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
