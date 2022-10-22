@@ -5,6 +5,7 @@ import hu.psprog.leaflet.lens.core.domain.Mail;
 import hu.psprog.leaflet.lens.core.domain.MailDeliveryInfo;
 import hu.psprog.leaflet.lens.core.domain.MailRequest;
 import hu.psprog.leaflet.lens.core.exception.MailException;
+import hu.psprog.leaflet.lens.core.exception.MailValidationException;
 import hu.psprog.leaflet.lens.core.factory.MailFactory;
 import hu.psprog.leaflet.lens.core.observer.ObserverHandler;
 import io.reactivex.Observable;
@@ -62,6 +63,19 @@ class MailServiceImplTest {
 
         // then
         verify(mailDeliveryInfoObserverHandler).attachObserver(mailDeliveryInfoObservable);
+    }
+
+    @Test
+    public void shouldSendMailReThrowMailValidationException() {
+
+        // given
+        doThrow(MailValidationException.class).when(mailFactory).buildMail(mailRequest);
+
+        // when
+        assertThrows(MailValidationException.class, () -> mailService.sendMail(mailRequest));
+
+        // then
+        // exception expected
     }
 
     @Test

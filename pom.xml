@@ -6,7 +6,7 @@
 
     <artifactId>leaflet-event-notification-service</artifactId>
     <packaging>pom</packaging>
-    <version>0.2.0-dev</version>
+    <version>0.3.0-dev</version>
 
     <modules>
         <module>web</module>
@@ -28,6 +28,9 @@
         <!-- Java environment version -->
         <java.version>11</java.version>
 
+        <!-- overrides for leaflet internal libs -->
+        <leaflet.rcp.version>1.8.1</leaflet.rcp.version>
+
         <!-- compiler settings -->
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -40,6 +43,16 @@
         <docker.skip>true</docker.skip>
 
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>hu.psprog.leaflet</groupId>
+                <artifactId>lens-rest-api</artifactId>
+                <version>${leaflet.rcp.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
