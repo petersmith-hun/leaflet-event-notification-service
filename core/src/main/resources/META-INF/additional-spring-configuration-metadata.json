@@ -1,12 +1,12 @@
 {
   "properties": [
     {
-      "name": "mail.sender.address",
+      "name": "mail.sender-address",
       "type": "java.lang.String",
       "description": "Sender email address that appears in the notification mails' header."
     },
     {
-      "name": "mail.sender.name",
+      "name": "mail.sender-name",
       "type": "java.lang.String",
       "description": "Sender name that appears in the notification mails' header."
     },
