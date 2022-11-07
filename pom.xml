@@ -6,7 +6,7 @@
 
     <artifactId>leaflet-event-notification-service</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-dev</version>
+    <version>1.0.1-dev</version>
 
     <modules>
         <module>web</module>
@@ -29,7 +29,7 @@
         <java.version>11</java.version>
 
         <!-- overrides for leaflet internal libs -->
-        <leaflet.rcp.version>1.8.1</leaflet.rcp.version>
+        <leaflet.rcp.version>1.9.1</leaflet.rcp.version>
 
         <!-- compiler settings -->
         <maven.compiler.source>${java.version}</maven.compiler.source>
