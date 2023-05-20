@@ -13,11 +13,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.mail.MessagingException;
-import javax.mail.SendFailedException;
-import javax.validation.ConstraintViolation;
-import javax.validation.Path;
-import javax.validation.Validator;
+import jakarta.mail.MessagingException;
+import jakarta.mail.SendFailedException;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Path;
+import jakarta.validation.Validator;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -43,7 +43,7 @@ class MailClientImplTest {
     private static final String MOCKED_VIOLATION = "Mocked Violation";
     private static final String VIOLATING_FIELD = "violatingField";
 
-    @Mock(lenient = true)
+    @Mock(strictness = Mock.Strictness.LENIENT)
     private MailProcessor mailProcessor;
 
     @Mock

@@ -2,7 +2,7 @@ package hu.psprog.leaflet.lens.core.client;
 
 import hu.psprog.leaflet.lens.core.domain.Mail;
 import hu.psprog.leaflet.lens.core.domain.MailDeliveryInfo;
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 
 /**
  * Mail sender client for Leaflet backend service.

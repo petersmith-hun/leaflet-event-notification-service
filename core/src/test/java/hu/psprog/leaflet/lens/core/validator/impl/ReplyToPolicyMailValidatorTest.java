@@ -20,7 +20,7 @@ import static org.mockito.BDDMockito.given;
 @ExtendWith(MockitoExtension.class)
 class ReplyToPolicyMailValidatorTest {
 
-    @Mock(lenient = true)
+    @Mock(strictness = Mock.Strictness.LENIENT)
     private MailRequest mailRequest;
 
     @Mock

@@ -28,7 +28,7 @@ class RecipientPolicyMailValidatorTest {
     @Mock
     private MailRequest mailRequest;
 
-    @Mock(lenient = true)
+    @Mock(strictness = Mock.Strictness.LENIENT)
     private List<String> recipientList;
 
     @Mock

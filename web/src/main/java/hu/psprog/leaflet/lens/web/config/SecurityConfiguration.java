@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -22,6 +22,8 @@ import java.util.stream.Stream;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
+    private static final String ENDPOINT_ACTUATOR = "/actuator/**";
+
     private static final String PATH_TEMPLATE = "/mail/%s";
     private static final String SCOPE_TEMPLATE = "SCOPE_write:mail:%s";
 
@@ -30,30 +32,31 @@ public class SecurityConfiguration {
 
         return registerPathsByMailTypes(http)
 
-                .csrf()
-                    .disable()
+                .csrf(AbstractHttpConfigurer::disable)
 
-                .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                    .and()
+                .sessionManagement(sessionManagement -> sessionManagement
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-                .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
+                .oauth2ResourceServer(resourceServer -> resourceServer
+                        .jwt(jwtConfigurer -> {}))
 
                 .build();
     }
 
     private HttpSecurity registerPathsByMailTypes(HttpSecurity http) throws Exception {
 
-        var authorizeRequests = http.authorizeRequests();
+        return http.authorizeHttpRequests(registry -> {
 
-        Stream.of(MailType.values())
-                .map(mailType -> mailType.name().toLowerCase())
-                .map(this::createPathToScopeMapping)
-                .forEach(pathToScopeMapping -> authorizeRequests
-                        .mvcMatchers(HttpMethod.POST, pathToScopeMapping.getLeft())
+            registry.requestMatchers(HttpMethod.GET, ENDPOINT_ACTUATOR)
+                            .permitAll();
+
+            Stream.of(MailType.values())
+                    .map(mailType -> mailType.name().toLowerCase())
+                    .map(this::createPathToScopeMapping)
+                    .forEach(pathToScopeMapping -> registry
+                            .requestMatchers(HttpMethod.POST, pathToScopeMapping.getLeft())
                             .hasAuthority(pathToScopeMapping.getRight()));
-
-        return http;
+        });
     }
 
     private Pair<String, String> createPathToScopeMapping(String mailTypePathVariable) {

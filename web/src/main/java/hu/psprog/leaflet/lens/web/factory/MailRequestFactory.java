@@ -25,10 +25,10 @@ public class MailRequestFactory {
 
         return MailRequest.builder()
                 .mailType(mailType)
-                .recipients(mailRequestWrapper.getRecipients())
-                .replyTo(mailRequestWrapper.getReplyTo())
-                .overrideSubjectKey(mailRequestWrapper.getOverrideSubjectKey())
-                .contentMap(mailRequestWrapper.getContent().asContentMap())
+                .recipients(mailRequestWrapper.recipients())
+                .replyTo(mailRequestWrapper.replyTo())
+                .overrideSubjectKey(mailRequestWrapper.overrideSubjectKey())
+                .contentMap(mailRequestWrapper.content().asContentMap())
                 .build();
     }
 }

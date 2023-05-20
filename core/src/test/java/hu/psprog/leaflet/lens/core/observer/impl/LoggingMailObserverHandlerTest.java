@@ -7,7 +7,7 @@ import ch.qos.logback.core.Appender;
 import hu.psprog.leaflet.lens.core.domain.Mail;
 import hu.psprog.leaflet.lens.core.domain.MailDeliveryInfo;
 import hu.psprog.leaflet.lens.core.domain.MailDeliveryStatus;
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

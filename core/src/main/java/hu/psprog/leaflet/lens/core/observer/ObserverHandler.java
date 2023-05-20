@@ -1,6 +1,6 @@
 package hu.psprog.leaflet.lens.core.observer;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 
 /**
  * Provides observer logic to an observable.
