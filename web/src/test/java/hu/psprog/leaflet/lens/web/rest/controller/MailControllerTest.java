@@ -45,7 +45,7 @@ class MailControllerTest {
     public void shouldSendMailReturnAcceptedStatusOnSuccess() {
 
         // given
-        MailRequestWrapper<SystemStartup> requestWrapper = new MailRequestWrapper<>();
+        var requestWrapper = MailRequestWrapper.<SystemStartup>builder().build();
         MailType mailType = MailType.SYSTEM_STARTUP;
         MailRequest mailRequest = MailRequest.builder().mailType(mailType).build();
 
@@ -88,7 +88,7 @@ class MailControllerTest {
         // then
         assertThat(result.getStatusCode(), equalTo(HttpStatus.BAD_REQUEST));
         assertThat(result.getBody(), notNullValue());
-        assertThat(result.getBody().getMessage(), equalTo(message));
+        assertThat(result.getBody().message(), equalTo(message));
     }
 
     @Test

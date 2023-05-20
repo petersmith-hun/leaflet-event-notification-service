@@ -25,7 +25,7 @@ import static org.hamcrest.Matchers.equalTo;
 @ExtendWith(MockitoExtension.class)
 class MailRequestFactoryTest {
 
-    private static final List<String> RECIPIENTS = List.of("admin@dev.local");
+    private static final String[] RECIPIENTS = {"admin@dev.local"};
     private static final String REPLY_TO = "replyto@dev.local";
     private static final String OVERRIDE_SUBJECT_KEY = "overridden-subject-key";
     private static final String USERNAME = "User 1";
@@ -42,19 +42,20 @@ class MailRequestFactoryTest {
     public void shouldCreateMailRequestScenario1() {
 
         // given
-        MailRequestWrapper<ContactRequest> requestWrapper = new MailRequestWrapper<>();
-        requestWrapper.setRecipients(RECIPIENTS);
-        requestWrapper.setReplyTo(REPLY_TO);
-        requestWrapper.setOverrideSubjectKey(OVERRIDE_SUBJECT_KEY);
-        requestWrapper.setContent(ContactRequest.builder()
-                .name(USERNAME)
-                .email(REPLY_TO)
-                .message(MESSAGE)
-                .build());
+        var requestWrapper = MailRequestWrapper.<ContactRequest>builder()
+                .recipients(RECIPIENTS)
+                .replyTo(REPLY_TO)
+                .overrideSubjectKey(OVERRIDE_SUBJECT_KEY)
+                .content(ContactRequest.builder()
+                        .name(USERNAME)
+                        .email(REPLY_TO)
+                        .message(MESSAGE)
+                        .build())
+                .build();
 
         MailRequest expectedMailRequest = MailRequest.builder()
                 .mailType(CONTACT_REQUEST)
-                .recipients(RECIPIENTS)
+                .recipients(List.of(RECIPIENTS))
                 .replyTo(REPLY_TO)
                 .overrideSubjectKey(OVERRIDE_SUBJECT_KEY)
                 .contentMap(Map.of(
@@ -75,11 +76,12 @@ class MailRequestFactoryTest {
     public void shouldCreateMailRequestScenario2() {
 
         // given
-        MailRequestWrapper<SystemStartup> requestWrapper = new MailRequestWrapper<>();
-        requestWrapper.setContent(SystemStartup.builder()
-                .applicationName(APPLICATION_NAME)
-                .version(VERSION)
-                .build());
+        var requestWrapper = MailRequestWrapper.<SystemStartup>builder()
+                .content(SystemStartup.builder()
+                        .applicationName(APPLICATION_NAME)
+                        .version(VERSION)
+                        .build())
+                .build();
 
         MailRequest expectedMailRequest = MailRequest.builder()
                 .mailType(SYSTEM_STARTUP)

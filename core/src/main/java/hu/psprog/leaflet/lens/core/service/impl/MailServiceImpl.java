@@ -9,7 +9,7 @@ import hu.psprog.leaflet.lens.core.exception.MailValidationException;
 import hu.psprog.leaflet.lens.core.factory.MailFactory;
 import hu.psprog.leaflet.lens.core.observer.ObserverHandler;
 import hu.psprog.leaflet.lens.core.service.MailService;
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

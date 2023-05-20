@@ -8,7 +8,7 @@ import hu.psprog.leaflet.lens.core.exception.MailException;
 import hu.psprog.leaflet.lens.core.exception.MailValidationException;
 import hu.psprog.leaflet.lens.core.factory.MailFactory;
 import hu.psprog.leaflet.lens.core.observer.ObserverHandler;
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
