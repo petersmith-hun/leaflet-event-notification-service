@@ -1,7 +1,6 @@
 package hu.psprog.leaflet.lens.core.config;
 
 import hu.psprog.leaflet.bridge.client.request.RequestAuthentication;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,13 +31,11 @@ public class CoreConfiguration {
     }
 
     @Bean
-    @Autowired
     public SimpleDateFormat mailDateFormat(MailProcessorConfigurationProperties mailProcessorConfigurationProperties) {
         return new SimpleDateFormat(mailProcessorConfigurationProperties.getDatePattern());
     }
 
     @Bean
-    @Autowired
     public TemplateEngine emailTemplateEngine(MessageSource messageSource) {
 
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
