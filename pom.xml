@@ -6,7 +6,7 @@
 
     <artifactId>leaflet-event-notification-service</artifactId>
     <packaging>pom</packaging>
-    <version>1.2.0-dev</version>
+    <version>1.2.1-dev</version>
 
     <modules>
         <module>web</module>
@@ -16,7 +16,7 @@
     <parent>
         <groupId>hu.psprog.leaflet</groupId>
         <artifactId>leaflet-stack-base-bom</artifactId>
-        <version>4.0-r2405.1</version>
+        <version>5.0-r2505.1</version>
     </parent>
 
     <properties>
@@ -38,6 +38,7 @@
         <docker.repository>${LEAFLET_DOCKER_REGISTRY_HOST}</docker.repository>
         <docker.image-name>lens</docker.image-name>
         <docker.skip>true</docker.skip>
+        <docker.skip-latest>true</docker.skip-latest>
 
     </properties>
 

@@ -1,0 +1,39 @@
+domino:
+  deployments:
+    lens:
+      source:
+        type: DOCKER
+        home: "[dsm:common.home.docker]"
+        resource: lens
+      target:
+        hosts:
+          - psproghu
+      execution:
+        command-name: app_lens
+        via: STANDARD
+        args:
+          ports:
+            8087: 8087
+          network-mode: host
+          environment:
+            APP_ARGS: |
+              --spring.profiles.active=production
+              --spring.config.location=/opt/lens/appconfig_lens.yml
+          volumes:
+            "[dsm:volume.logs]": "/opt/lens/logs:rw"
+            "[dsm:volume.config.lens]": "/opt/lens/appconfig_lens.yml:ro"
+            "/etc/timezone": "/etc/timezone:ro"
+            "/etc/localtime": "/etc/localtime:ro"
+          restart-policy: unless-stopped
+      health-check:
+        enabled: true
+        delay: 20 seconds
+        timeout: 2 seconds
+        max-attempts: 3
+        endpoint: "http://127.0.0.1:8087/lens/actuator/health"
+      info:
+        enabled: true
+        endpoint: "http://127.0.0.1:8087/lens/actuator/info"
+        field-mapping:
+          abbreviation: $.app.abbreviation
+          version: $.build.version
