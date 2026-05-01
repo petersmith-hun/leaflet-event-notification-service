@@ -16,7 +16,7 @@
     <parent>
         <groupId>hu.psprog.leaflet</groupId>
         <artifactId>leaflet-stack-base-bom</artifactId>
-        <version>6.0-r2604.2</version>
+        <version>6.0-r2604.3</version>
     </parent>
 
     <properties>
