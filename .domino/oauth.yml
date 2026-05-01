@@ -1,0 +1,36 @@
+domino:
+  oauth:
+    lens:
+      behavior:
+        target-provider: gateway-psproghu
+        roll-client-secret-on-deploy: true
+        use-secret-manager-for:
+          - client-secret
+          - client-id
+      tenant:
+        environment: prod
+        name: psproghu
+      resource-server:
+        use-audience: true
+        registered-permissions:
+          - write:mail:comment_notification
+          - write:mail:contact_request
+          - write:mail:pw_reset_confirmation
+          - write:mail:pw_reset_request
+          - write:mail:signup_confirmation
+          - write:mail:system_startup
+        allowed-clients:
+          - name: lags
+            allowed-permissions:
+              - write:mail:pw_reset_confirmation
+              - write:mail:pw_reset_request
+              - write:mail:signup_confirmation
+              - write:mail:system_startup
+          - name: leaflet
+            allowed-permissions:
+              - write:mail:comment_notification
+              - write:mail:contact_request
+              - write:mail:system_startup
+          - name: lcfa
+            allowed-permissions:
+              - write:mail:system_startup

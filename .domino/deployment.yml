@@ -19,6 +19,8 @@ domino:
             APP_ARGS: |
               --spring.profiles.active=production
               --spring.config.location=/opt/lens/appconfig_lens.yml
+              --spring.mail.username=[dsm:apps.lens.mailjet.username]
+              --spring.mail.password=[dsm:apps.lens.mailjet.password]
           volumes:
             "[dsm:volume.logs]": "/opt/lens/logs:rw"
             "[dsm:volume.config.lens]": "/opt/lens/appconfig_lens.yml:ro"
